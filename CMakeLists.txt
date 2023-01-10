@@ -8,6 +8,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(example_interfaces REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -24,9 +25,22 @@ endif()
 add_executable(dummy_cpp_node src/cpp_node_template.cpp)
 ament_target_dependencies(dummy_cpp_node rclcpp)
 
+add_executable(dummy_publisher_cpp_node src/cpp_publisher_template.cpp)
+ament_target_dependencies(dummy_publisher_cpp_node rclcpp example_interfaces)
+
+add_executable(dummy_subscriber_cpp_node src/cpp_subscriber_template.cpp)
+ament_target_dependencies(dummy_subscriber_cpp_node rclcpp example_interfaces)
+
 install(TARGETS
   dummy_cpp_node
+  dummy_publisher_cpp_node
+  dummy_subscriber_cpp_node
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
 )
 
 ament_package()
