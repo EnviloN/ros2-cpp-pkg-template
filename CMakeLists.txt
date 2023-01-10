@@ -31,10 +31,18 @@ ament_target_dependencies(dummy_publisher_cpp_node rclcpp example_interfaces)
 add_executable(dummy_subscriber_cpp_node src/cpp_subscriber_template.cpp)
 ament_target_dependencies(dummy_subscriber_cpp_node rclcpp example_interfaces)
 
+add_executable(dummy_server_cpp_node src/cpp_service_server_template.cpp)
+ament_target_dependencies(dummy_server_cpp_node rclcpp example_interfaces)
+
+add_executable(dummy_client_cpp_node src/cpp_service_client_template.cpp)
+ament_target_dependencies(dummy_client_cpp_node rclcpp example_interfaces)
+
 install(TARGETS
   dummy_cpp_node
   dummy_publisher_cpp_node
   dummy_subscriber_cpp_node
+  dummy_server_cpp_node
+  dummy_client_cpp_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
